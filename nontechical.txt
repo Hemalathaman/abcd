@@ -1,0 +1,60 @@
+package p1;
+
+public class NonTechnicalStudents extends Student {
+	public NonTechnicalStudents(String name, String stream) {
+		super(name, stream);
+		// TODO Auto-generated constructor stub
+	}
+
+	int subjectiveMarks;
+	String subjectName;
+
+	public NonTechnicalStudents(String name, String stream, int subjectiveMarks, String subjectName) {
+		super(name, stream);
+		this.subjectiveMarks = subjectiveMarks;
+		this.subjectName = subjectName;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	public int getSubjectiveMarks() {
+		return subjectiveMarks;
+	}
+
+	public void setSubjectiveMarks(int subjectiveMarks) {
+		this.subjectiveMarks = subjectiveMarks;
+	}
+
+	@Override
+	public int calculateMarks() {
+		// TODO Auto-generated method stub
+		try
+		{
+		if (subjectiveMarks <= 90) {
+			this.subjectiveMarks = subjectiveMarks;
+		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("invalid marks");
+		}
+		return subjectiveMarks;
+	}
+	public int totalMarks()
+	{
+		return subjectiveMarks;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

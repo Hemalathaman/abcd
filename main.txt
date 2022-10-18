@@ -1,0 +1,122 @@
+package p1;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Comparator;
+
+public class Main {
+
+	Scanner sc = new Scanner(System.in);
+	Scanner scStr = new Scanner(System.in);
+	// TreeSet<Student> allStudents=new TreeSet<>();
+	StudentApp st=new StudentApp();
+   //Main app1=new Main();
+	public static void main(String[] args) {
+
+		Main app = new Main();
+	
+
+		while (true) {
+			System.out.println("1.Enter the technical student details:");
+			System.out.println("2.Enter the non techinical student details");
+			System.out.println("3.Sorting Based on Pratical Marks");
+			System.out.println("4.Display all the student details");
+
+			System.out.println("Enter the option :");
+
+			switch (new Scanner(System.in).nextInt()) {
+
+			case 1:
+				app.addTechincalStudent();
+				break;
+
+			case 2:
+				app.addNonTechincalStudent();
+				break;
+			case 3:
+				app.sortings();
+				break;
+			case 4:
+				app.display();
+				break;
+			}
+		}
+	}//end of main class
+
+	private void display() {
+		
+			
+		TreeSet<Student> list=new TreeSet<>();
+		for (Student student : list) {
+			System.out.println("display details:"+student);
+		}
+		
+	}
+
+	void addTechincalStudent() {
+		System.out.println("Enter the name of the student:");
+		String name = scStr.nextLine();
+		System.out.println("Enter the stream:");
+		String stream = scStr.nextLine();
+		System.out.println("Enter the subjective marks:");
+		int sMarks = sc.nextInt();
+		System.out.println("Enter the pratical marks:");
+		int pMarks = sc.nextInt();
+
+		Student t = new TechnicalStudents(name, stream, sMarks, pMarks);
+
+		System.out.println("TEchnical marks:" + t.calculateMarks());
+		st.insertStudent(t);
+		
+		
+		
+
+	}
+
+	void addNonTechincalStudent() {
+		System.out.println("Enter the name of the student:");
+		String name1 = scStr.nextLine();
+		System.out.println("Enter the stream:");
+		String stream1 = scStr.nextLine();
+		System.out.println("Enter the subjective marks:");
+		int sMarks1 = sc.nextInt();
+		System.out.println("Enter the subject name:");
+		String subName = scStr.nextLine();
+		Student nt = new NonTechnicalStudents(name1, stream1, sMarks1, subName);
+		System.out.println("Non technical marks:" + nt.calculateMarks());
+		st.insertStudent(nt);
+		
+	}
+
+	void sortings() {
+
+		List<Student> sortingBasedonPraticalMarks = new ArrayList<>(st.allStudents);
+		Collections.sort(sortingBasedonPraticalMarks, new SortingBasedOnPracticalMarks());
+		st.printSet(sortingBasedonPraticalMarks, " Print List of based  on pratical marks");
+        //sorting based on marks
+		
+		
+		List<Student> sortingBasedonMarks = new ArrayList<>(st.allStudents);
+		Collections.sort(sortingBasedonMarks, new SortingBasedOnMarks());
+		st.printSet(sortingBasedonMarks, " Print List of based  on marks");
+		//sorting based on subject name on non technical
+		
+		
+		List<Student> sortingBasedonSubjectNameNonTechnical = new ArrayList<>(st.allStudents);
+		Collections.sort( sortingBasedonSubjectNameNonTechnical, new  SortingBasedOnSubjectNameNonTechnical());
+		st.printSet( sortingBasedonSubjectNameNonTechnical, " Print List of based  on marks");
+
+		
+		
+	}
+}
+
+
+	
+
+
